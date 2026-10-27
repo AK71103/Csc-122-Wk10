@@ -1,0 +1,96 @@
+//Shape lab (Assert)
+//Alexander W Kazantzis
+//10-27-26
+
+#include <iostream>
+#include <cmath>
+#include <numbers>
+#include <cassert>
+const double Pi = 3.14159; //constant for Pi
+
+// Base Class for the shapes
+class shape{
+    private:
+    protected:
+    public:
+    double getArea(){
+        return 0;
+    }
+
+    double getPerim(){
+        return 0;
+    }
+};
+class Circle : public shape{ 
+private:
+    int Radius = 3;
+public:
+    double getArea(){ //Area of a circle is Pi times radius squared (pi*R^2) 
+        return (Pi * Radius * Radius);
+    }
+
+    double getPerim(){ //the circumference of a circle is 2 times pi times r (2*pi*R)
+        return (2 * Pi * Radius);
+    }
+};
+
+class Rectangle : public shape{
+private:
+    int RLng = 4;
+    int Rwid = 5;
+public:     
+    double getArea(){ //area of a rectangle is length times width (Rlng*Rwid)
+        return (Rwid*RLng);
+    }
+
+    double getPerim(){ //perimeter of a rectangle is the 4 sides added up (Rlng+Rlng+Rwid+Rwid)
+        return ((RLng*2)+(Rwid*2));
+    }
+};
+
+class RightTriangle : public shape{
+private:
+    int SideA = 3;
+    int SideB = 4;
+    int SideC = 5;
+public:       
+    double getArea(){ //area of a right triangle is(SideA*SideB)/2
+        return ((SideA*SideB)/2);
+    }
+
+    double getPerim(){ //perimeter of a right triangle is SideA+SideB+SideC
+        return (SideA+SideB+SideC);
+    }
+};
+
+
+
+int main(){
+    Circle cir;
+    Rectangle Rect;
+    RightTriangle RghtTri;
+    
+    //Circle radius is 3
+    assert(std::abs(cir.getArea() - 28.27431) < 0.00001);
+    assert(std::abs(cir.getPerim() - 18.84954) < 0.00001);
+    std::cout << "All Circle tests passed!\n";
+
+    //Rectangle width is 5, length is 4
+    assert(Rect.getArea() == 20);
+    assert(Rect.getPerim() == 18);
+    std::cout << "All Rectangle tests passed!\n";
+
+    // right triangle: SideA is 3, SideB is 4, SideC is 5,
+    assert(RghtTri.getArea() ==6);
+    assert(RghtTri.getPerim() ==12);
+    std::cout << "All Right triangle tests passed!\n";
+
+    std::cout << "Area of a Circle: " << cir.getArea()<< '\n';
+    std::cout << "Circumference of a Circle: " << cir.getPerim()<< '\n';
+    std::cout << '\n';
+    std::cout << "Area of a Rectangle: " << Rect.getArea()<< '\n';
+    std::cout << "Perimeter of a Rectangle: " << Rect.getPerim()<< '\n';
+    std::cout << '\n';
+    std::cout << "Area of a Right Triangle: " << RghtTri.getArea()<< '\n';
+    std::cout << "Perimeter of a Right Triangle: " << RghtTri.getPerim()<< '\n';
+}
