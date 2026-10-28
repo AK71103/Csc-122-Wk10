@@ -1,0 +1,158 @@
+//Shape lab
+//Alexander W Kazantzis
+//10-27-26
+
+#include <iostream>
+#include <cmath>
+#include <numbers>
+#include <cassert>
+const double Pi = 3.14159; //constant for Pi
+
+// Base Class for the shapes (must be abstracted)
+class shape{
+    private:
+    protected:
+    public:
+    virtual double getArea() = 0;
+    virtual double getPerim()= 0;
+    virtual const char* getName() = 0;
+    virtual ~shape() = default;
+};
+class Circle : public shape{ 
+private:
+    int Radius = 3;
+public:
+    double getArea(){ //Area of a circle is Pi times radius squared (pi*R^2) 
+        return (Pi * Radius * Radius);
+    }
+
+    double getPerim(){ //the circumference of a circle is 2 times pi times r (2*pi*R)
+        return (2 * Pi * Radius);
+    }
+    const char* getName() override {
+    return "Circle";
+    }
+};
+
+class Rectangle : public shape{
+private:
+    int RLng = 4;
+    int Rwid = 5;
+public:     
+    double getArea(){ //area of a rectangle is length times width (Rlng*Rwid)
+        return (Rwid*RLng);
+    }
+
+    double getPerim(){ //perimeter of a rectangle is the 4 sides added up (Rlng+Rlng+Rwid+Rwid)
+        return ((RLng*2)+(Rwid*2));
+    }
+    const char* getName() override {
+    return "Rectangle";
+    }
+};
+
+class RightTriangle : public shape{
+private:
+    int SideA = 3;
+    int SideB = 4;
+    int SideC = 5;
+public:       
+    double getArea(){ //area of a right triangle is(SideA*SideB)/2
+        return ((SideA*SideB)/2);
+    }
+
+    double getPerim(){ //perimeter of a right triangle is SideA+SideB+SideC
+        return (SideA+SideB+SideC);
+    }
+    const char* getName() override {
+    return "Right Triangle";
+    }
+};
+
+class Square : public Rectangle{ //concrete class
+private:
+    int SqrSdLng = 5; //square side length
+    int RLng = SqrSdLng;
+    int Rwid = SqrSdLng;
+public:    
+    double getArea() override{ //area of a square is SqrSdLng^2
+        return (SqrSdLng*SqrSdLng);
+    }
+    double getPerim() override{ //square's perimeter is 4 * Square side length
+        return (SqrSdLng*4);
+    }
+    const char* getName() override {
+    return "Square";
+    }
+};
+
+class IsocelesRightTriangle : public RightTriangle{ //concrete class
+private:    
+    int IsoLegLng = 6;
+    double IsoHypLng = (IsoLegLng*sqrt(2));
+public:    
+    double getArea() override { // area is ((IsoLegLng^2)/2)
+        return ((IsoLegLng*IsoLegLng)/2.0);
+    }
+    double getPerim() override { // perimeter is ((2*IsoLegLng)+(IsoHypLng))
+        return ((2*IsoLegLng)+(IsoHypLng));
+    }
+    const char* getName() override {
+    return "An Isoceles Right Triangle";
+    }
+};
+void PrintAreaToScreen(shape* s) { //Takes a shape object and prints a message that includes the Name and Area of a shape
+    std::cout <<"Area of " << s->getName()<< ": " << s->getArea() << '\n';
+}
+
+int main(){
+    Circle cir;
+    Rectangle Rect;
+    RightTriangle RghtTri;
+    Square Sqr;
+    IsocelesRightTriangle IsoRghtTri;
+    //Circle radius is 3
+    assert(std::abs(cir.getArea() - 28.27431) < 0.00001);
+    assert(std::abs(cir.getPerim() - 18.84954) < 0.00001);
+    std::cout << "All Circle tests passed!\n";
+
+    //Rectangle width is 5, length is 4
+    assert(Rect.getArea() == 20);
+    assert(Rect.getPerim() == 18);
+    std::cout << "All Rectangle tests passed!\n";
+
+    // right triangle: SideA is 3, SideB is 4, SideC is 5,
+    assert(RghtTri.getArea() == 6);
+    assert(RghtTri.getPerim() == 12);
+    std::cout << "All Right triangle tests passed!\n";
+
+    // Square: length of sides is 5
+    assert(Sqr.getArea()==25);
+    assert(Sqr.getPerim()==20);
+    std::cout << "All Square tests passed!\n";
+    //IsoRghtTri: Leg length is six
+    assert(std::abs(IsoRghtTri.getArea()- 18) <0.00001);
+    assert(std::abs(IsoRghtTri.getPerim()-(12.0+6.0*std::sqrt(2.0)))<0.00001);
+    std::cout << "All Isoceles Right triangle tests passed!\n";
+ 
+    std::cout << "Area of a Circle: " << cir.getArea()<< '\n';
+    std::cout << "Circumference of a Circle: " << cir.getPerim()<< '\n';
+    std::cout << '\n';
+    std::cout << "Area of a Rectangle: " << Rect.getArea()<< '\n';
+    std::cout << "Perimeter of a Rectangle: " << Rect.getPerim()<< '\n';
+    std::cout << '\n';
+    std::cout << "Area of a Right Triangle: " << RghtTri.getArea()<< '\n';
+    std::cout << "Perimeter of a Right Triangle: " << RghtTri.getPerim()<< '\n';
+    std::cout << '\n';
+    std::cout << "Area of a Square: " << Sqr.getArea()<< '\n';
+    std::cout << "Perimeter of a Square: " << Sqr.getPerim()<< '\n';
+    std::cout << '\n';
+    std::cout << "Area of an Isoceles right triangle: " << IsoRghtTri.getArea()<< '\n';
+    std::cout << "Perimeter of a Isoceles right triangle: " << IsoRghtTri.getPerim()<< '\n';
+    std::cout << '\n';
+    PrintAreaToScreen(&cir);
+    PrintAreaToScreen(&Rect);
+    PrintAreaToScreen(&RghtTri);
+    PrintAreaToScreen(&Sqr);
+    PrintAreaToScreen(&IsoRghtTri);             
+}
