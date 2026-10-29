@@ -1,0 +1,109 @@
+//Symphonia Polymorphismi Lab
+//Alexander W Kazantzis
+//10-29-26
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <memory>
+#include <stdexcept>
+//base class for instruments (must be abstracted)
+class Instrument{ //Instruments must have a name, a sound, and a play function
+protected:
+    std::string Name; //Name of instrument
+    std::string Sound; //sound of instrument
+
+public:
+   //constructor + validation
+    Instrument(const std::string& InstrmtName, const std::string& InstrmtSound) {
+        if (InstrmtName.empty() || InstrmtSound.empty()) {
+            throw std::invalid_argument("Name and sound cannot be empty.");
+        }
+    Name = InstrmtName;
+    Sound = InstrmtSound;
+    }
+   //deconstructor
+    virtual ~Instrument() =default;
+
+    virtual void play() const = 0;
+};
+//derived classes
+class Violin: public Instrument{
+    public:
+    Violin() :  Instrument("Violin","vwa"){}
+
+    void play() const override{
+        std::cout << Name << ": ";
+        for (int i = 0; i < 5; ++i) std::cout << Sound << " ";
+        std::cout << "\n";
+    }
+};
+class Piano: public Instrument{
+    public:
+    Piano() :  Instrument("Piano","plink"){}
+
+    void play() const override{
+        std::cout << Name << ": ";
+        for (int i = 0; i < 6; ++i) std::cout << Sound << " ";
+        std::cout << "\n";
+    }
+};
+class Drums: public Instrument{
+    public:
+    Drums() :  Instrument("Drums","pmph"){}
+
+    void play() const override{
+        std::cout << Name << ": ";
+        for (int i = 0; i < 6; ++i) std::cout << Sound << " ";
+        std::cout << "\n";
+    }
+};
+class Flute: public Instrument{
+    public:
+    Flute() :  Instrument("Flute","doot"){}
+
+    void play() const override{
+        std::cout << Name << ": ";
+        for (int i = 0; i < 4; ++i) std::cout << Sound << " ";
+        std::cout << "\n";
+    }
+};
+class Trumpet: public Instrument{
+    public:
+    Trumpet() :  Instrument("Trumpet","bham"){}
+    
+    void play() const override{
+        std::cout << Name << ": ";
+        for (int i = 0; i < 3; ++i) std::cout << Sound << " ";
+        std::cout << "\n";
+    }
+};
+
+class Orchestra {
+private:
+std::vector<std::shared_ptr<Instrument>> instruments;
+
+public:
+void AddInstrument(const std::shared_ptr<Instrument>&inst){
+    instruments.push_back(inst);
+}
+void play() const{
+    for(const auto& inst: instruments){
+        inst->play();
+    }
+}
+};
+
+int main(){
+Orchestra orchestra;
+
+orchestra.AddInstrument(std::make_shared<Violin>());
+orchestra.AddInstrument(std::make_shared<Piano>());
+orchestra.AddInstrument(std::make_shared<Drums>());
+orchestra.AddInstrument(std::make_shared<Flute>());
+orchestra.AddInstrument(std::make_shared<Trumpet>());
+
+//Orchestra plays
+std::cout << "Orchestra is playing:\n";
+orchestra.play();
+}
