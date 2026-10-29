@@ -14,7 +14,7 @@
 
 Your job is to create a symphony using polymorphism.
 
--Create a base class "instrument". It should have a name variable and a sound variable, as well as a virtual function called play (the goal of this function is to just print the name and sound).
+-Create a base class "instrument". It should have a name variable and a sound variable, as well as a virtual function called play (the goal of this function is to just print the name and sound). must be abstracted!
 
 -Create 5 or more derived classes representing various specific instruments. Implement the play function such that each instrument prints its sound for a different number of repetitions. For example, a trumpet might play three "doot"s, and a violin might play five "vwa"s
 
