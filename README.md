@@ -10,4 +10,25 @@
 4. Write a function called "void printAreaToScreen(Shape *s)" which takes a shape object and then prints out a nice message which includes the name and area of the shape. You should be able to use it with all of the shapes that you created!
 5. Test each of the classes in a main program via assert statements.
 
-## Symphonia Polymorphism Lab
+## Symphonia Polymorphismi Lab
+
+Your job is to create a symphony using polymorphism.
+
+-Create a base class "instrument". It should have a name variable and a sound variable, as well as a virtual function called play (the goal of this function is to just print the name and sound).
+
+-Create 5 or more derived classes representing various specific instruments. Implement the play function such that each instrument prints its sound for a different number of repetitions. For example, a trumpet might play three "doot"s, and a violin might play five "vwa"s
+
+-Create a class called "orchestra". It should contain a polymorphic list of instruments (aka a list of instrument pointers). The orchestra should have a method also called "play", that makes each instrument in the list call its play function, in the order they are in the list.
+
+Example Output:
+
+Trumpet: doot doot doot
+Violin: vwa vwa vwa vwa vwa
+Piano: Dee dee
+Trombone: Dwooooo~
+Trumpet: doot doot doot
+Singer: Blah blah blah blah blah blah
+
+Also answer these TPQs:
+Describe how this pattern could be abstracted and then applied to a useful real world scenario.
+Imagine you wanted to impose some restrictions on the ordering of your orchestra. E.G. the piano can only go immediately after the trumpet. At what part in your program do you think it would be best to add code to apply these conditions?
