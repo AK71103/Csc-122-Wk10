@@ -22,12 +22,17 @@ Your job is to create a symphony using polymorphism.
 
 Example Output:
 
-Trumpet: doot doot doot
-Violin: vwa vwa vwa vwa vwa
-Piano: Dee dee
-Trombone: Dwooooo~
-Trumpet: doot doot doot
-Singer: Blah blah blah blah blah blah
+Trumpet: doot doot doot '\n'
+
+Violin: vwa vwa vwa vwa vwa '\n'
+
+Piano: Dee dee '\n'
+
+Trombone: Dwooooo~ '\n'
+
+Trumpet: doot doot doot '\n'
+
+Singer: Blah blah blah blah blah blah '\n'
 
 Also answer these TPQs:
 Describe how this pattern could be abstracted and then applied to a useful real world scenario.
