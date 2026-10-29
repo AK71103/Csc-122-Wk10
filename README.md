@@ -1,5 +1,5 @@
 # Csc-122-Wk10
-
+## Shape Lab
 1. Write a C++ program to create a class called Shape with methods getArea() and getPerimeter(). These should just return 0 for the base class. CHK
 2. Create three classes: Circle, Rectangle, and RightTriangle. Override the getArea() and getPerimeter() methods in each subclass to calculate and return the area and perimeter of the respective shapes. CHK
 3. Test each of the classes in a main program via assert statements. CHK
