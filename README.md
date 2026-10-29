@@ -9,3 +9,5 @@
 3. Update your program with a new concrete class called IsocelesRightTriangle. IsoscelesRightTriangle should inherit its behavior from the RightTriangle class. You may or may not need to overwrite getArea() and getPerimeter(). CHK
 4. Write a function called "void printAreaToScreen(Shape *s)" which takes a shape object and then prints out a nice message which includes the name and area of the shape. You should be able to use it with all of the shapes that you created!
 5. Test each of the classes in a main program via assert statements.
+
+## Symphonia Polymorphism Lab
